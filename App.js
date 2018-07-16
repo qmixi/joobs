@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
+import {Provider} from 'react-redux';
 
 import AuthScreen from './screens/AuthScreen';
 import HelloScreen from './screens/HelloScreen';
@@ -8,6 +10,7 @@ import MapScreen from './screens/MapScreen';
 import DeckScreen from './screens/DeckScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ReviewScreen from './screens/ReviewScreen';
+import store from "./store";
 
 
 export default class App extends React.Component {
@@ -28,7 +31,9 @@ export default class App extends React.Component {
     });
 
     return (
-        <MainNavigator />
+        <Provider store={store}>
+            <MainNavigator />
+        </Provider>
     );
   }
 }
