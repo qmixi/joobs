@@ -1,18 +1,25 @@
 import React, {Component} from 'react';
-import { View, Text } from 'react-native';
+import {View} from 'react-native';
+
+import {Button} from "react-native-elements";
+import {connect} from "react-redux";
+
+import * as actions from '../actions';
 
 class SettingsScreen extends Component {
 		render() {
 				return (
 						<View>
-								<Text>Settings Screen</Text>
-								<Text>Settings Screen</Text>
-								<Text>Settings Screen</Text>
-								<Text>Settings Screen</Text>
-								<Text>Settings Screen</Text>
+								<Button
+										title="Reset Liked Jobs!"
+										large
+										backgroundColor="#F44336"
+										icon={{name: 'delete-forever'}}
+										onPress={() => this.props.clearLikedJobs()}
+								/>
 						</View>
 				);
 		}
 }
 
-export default SettingsScreen;
+export default connect(null, actions)(SettingsScreen);

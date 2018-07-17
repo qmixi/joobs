@@ -5,16 +5,22 @@ import {connect} from 'react-redux';
 import {MapView} from "expo";
 
 import Swipe from "../components/Swipe/Swipe";
-import {Card} from "react-native-elements";
+import {Button, Card, Icon} from "react-native-elements";
+import * as actions from '../actions';
 
 
 class DeckScreen extends Component {
+		static navigationOptions = {
+				title: 'Jobs',
+				tabBarIcon: ({tintColor}) => <Icon name="description" size={30} color={tintColor}/>
+		};
+
 		renderCard(job) {
 				const initialRegion = {
-					longitude: job.longitude,
-					latitude: job.latitude,
-					longitudeDelta: 0.045,
-					latitudeDelta: 0.09,
+						longitude: job.longitude,
+						latitude: job.latitude,
+						longitudeDelta: 0.045,
+						latitudeDelta: 0.09,
 				};
 
 				return <Card title={job.jobtitle}>
@@ -34,20 +40,29 @@ class DeckScreen extends Component {
 				</Card>
 		};
 
-		renderNoMoreCards() {
+		renderNoMoreCards = () => {
 				return (
-						<Card title="No more jobs"/>
+						<Card title="No more jobs">
+								<Button
+										title="Back To Map"
+										large
+										icon={{name: 'my-location'}}
+										backgroundColor="#03A9F4"
+										onPress={() => this.props.navigation.navigate('map')}
+								/>
+						</Card>
 				)
 		}
 
 		render() {
 				return (
-						<View>
+						<View style={{marginTop: 10}}>
 								<Swipe
 										data={this.props.jobs}
 										renderCard={this.renderCard}
 										renderNoMoreCards={this.renderNoMoreCards}
 										keyProp="jobkey"
+										onSwipeRight={job => this.props.likeJob(job)}
 								/>
 						</View>
 				);
@@ -68,4 +83,4 @@ function mapStateToProps({jobs}) {
 		};
 }
 
-export default connect(mapStateToProps)(DeckScreen);
+export default connect(mapStateToProps, actions)(DeckScreen);
