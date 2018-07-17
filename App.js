@@ -4,13 +4,13 @@ import {StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import {Provider} from 'react-redux';
 
-import AuthScreen from './screens/AuthScreen';
-import HelloScreen from './screens/HelloScreen';
-import MapScreen from './screens/MapScreen';
-import DeckScreen from './screens/DeckScreen';
-import SettingsScreen from './screens/SettingsScreen';
-import ReviewScreen from './screens/ReviewScreen';
-import store from "./store";
+import AuthScreen from './src/screens/AuthScreen';
+import HelloScreen from './src/screens/HelloScreen';
+import MapScreen from './src/screens/MapScreen';
+import DeckScreen from './src/screens/DeckScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
+import ReviewScreen from './src/screens/ReviewScreen';
+import store from "./src/store";
 
 
 export default class App extends React.Component {
