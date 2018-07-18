@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import {REHYDRATE} from "redux-persist";
 
 import {
 		CLEAR_LIKED_JOBS,
@@ -7,6 +8,8 @@ import {
 
 export default function (state = [], action) {
 		switch (action.type) {
+				case REHYDRATE:
+						return action.payload.likedJobs || [];
 				case LIKE_JOB:
 						console.log('action', action);
 						return _.uniqBy([
